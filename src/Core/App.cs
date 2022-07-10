@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Net.Mime;
+using Core.GameSetup;
+using Core.General;
 
 namespace Core
 {
@@ -69,10 +71,10 @@ namespace Core
 
             string documentsPath;
             documentsPath = Path.Combine(this.theAppPath, "Documents");
-            AppConstants.HelpTutorialLink = Path.Combine(documentsPath, AppConstants.HelpTutorialLink);
-            AppConstants.HelpContentsLink = Path.Combine(documentsPath, AppConstants.HelpContentsLink);
-            AppConstants.HelpIndexLink = Path.Combine(documentsPath, AppConstants.HelpIndexLink);
-            AppConstants.HelpTipsLink = Path.Combine(documentsPath, AppConstants.HelpTipsLink);
+            Constants.HelpContentsLink = Path.Combine(documentsPath, Constants.HelpContentsLink);
+            Constants.HelpTutorialLink = Path.Combine(documentsPath, Constants.HelpTutorialLink);
+            Constants.HelpIndexLink = Path.Combine(documentsPath, Constants.HelpIndexLink);
+            Constants.HelpTipsLink = Path.Combine(documentsPath, Constants.HelpTipsLink);
         }
 
         private void Free()
@@ -82,7 +84,7 @@ namespace Core
         }
 
 
-        public AppSettings Settings
+        public Settings Settings
         {
             get
             {
@@ -272,6 +274,7 @@ namespace Core
         {
             // Dim logsPath As String
 
+            
             // logsPath = Path.Combine(outputPath, modelName + "_" + App.LogsSubFolderName)
 
             // Return logsPath
@@ -491,7 +494,7 @@ namespace Core
         private CultureInfo theInternalCultureInfo;
         private NumberFormatInfo theInternalNumberFormat;
 
-        private AppSettings theSettings;
+        private Settings theSettings;
 
         // NOTE: Use slash at start to avoid confusing with a pathFileName that Windows Explorer might use with auto-open.
         public const string SettingsParameter = "/settings=";

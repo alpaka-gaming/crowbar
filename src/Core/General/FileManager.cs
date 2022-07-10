@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Security;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 using System.Runtime.InteropServices;
 using System.Xml.Serialization;
@@ -19,7 +12,7 @@ namespace Core.General
     {
         public static bool FilePathHasInvalidChars(string path)
         {
-            bool ret = false;
+            var ret = false;
 
             if (string.IsNullOrEmpty(path))
                 ret = true;
@@ -27,8 +20,8 @@ namespace Core.General
             {
                 try
                 {
-                    string fileName = System.IO.Path.GetFileName(path);
-                    string fileDirectory = System.IO.Path.GetDirectoryName(path);
+                    var fileName = System.IO.Path.GetFileName(path);
+                    var fileDirectory = System.IO.Path.GetDirectoryName(path);
                 }
                 catch (ArgumentException generatedExceptionName)
                 {
@@ -47,7 +40,7 @@ namespace Core.General
 
         public static string ReadNullTerminatedString(BinaryReader inputFileReader)
         {
-            StringBuilder text = new StringBuilder();
+            var text = new StringBuilder();
             text.Length = 0;
             while (inputFileReader.PeekChar() > 0)
                 text.Append(inputFileReader.ReadChar());
@@ -133,8 +126,8 @@ namespace Core.General
         public static bool ReadKeyValueLine(BinaryReader inputFileReader, ref string oKey, ref string oValue)
         {
             string line;
-            char[] delimiters = new[] { '"' };
-            string[] tokens = new[] { "" };
+            var delimiters = new[] { '"' };
+            var tokens = new[] { "" };
             line = ReadTextLine(inputFileReader);
             if (line != null)
             {
@@ -293,8 +286,8 @@ namespace Core.General
             else
             {
                 // Read in the token characters until a control character.
-                char[] delimiters = new[] { '"', '{', '}' };
-                string[] tokens = new[] { "" };
+                var delimiters = new[] { '"', '{', '}' };
+                var tokens = new[] { "" };
                 tokens = buffer.Split(delimiters);
                 token = tokens[0];
 
@@ -308,8 +301,8 @@ namespace Core.General
 
         public static string ReadTextLine(BinaryReader inputFileReader)
         {
-            StringBuilder line = new StringBuilder();
-            char aChar = ' ';
+            var line = new StringBuilder();
+            var aChar = ' ';
             try
             {
                 while (true)
@@ -322,7 +315,7 @@ namespace Core.General
             }
             catch (Exception ex)
             {
-                int debug = 4242;
+                var debug = 4242;
             }
 
             if (line.Length > 0)
@@ -349,7 +342,7 @@ namespace Core.General
             try
             {
                 pathFileName = FileManager.GetNormalizedPathFileName(pathFileName);
-                int length = pathFileName.LastIndexOf(Path.DirectorySeparatorChar);
+                var length = pathFileName.LastIndexOf(Path.DirectorySeparatorChar);
                 if (length < 1)
                     pathFileName = "";
                 else if (length > 0)
@@ -387,6 +380,7 @@ namespace Core.General
                 }
                 catch (Exception ex)
                 {
+                    // ignored
                 }
             }
 
@@ -398,7 +392,7 @@ namespace Core.General
             if (baseDirectory == null)
                 baseDirectory = Environment.CurrentDirectory;
 
-            string root = Path.GetPathRoot(maybeRelativePath);
+            var root = Path.GetPathRoot(maybeRelativePath);
             if (string.IsNullOrEmpty(root))
                 return Path.GetFullPath(Path.Combine(baseDirectory, maybeRelativePath));
             else if (root == @"\")
@@ -435,11 +429,11 @@ namespace Core.General
             // path2 = "C:\temp\Crowbar\addon.txt"
             // diff  = "Crowbar\addon.txt"
             // WANT: diff = "addon.txt"
-            Uri path1 = new Uri(fromPathAbsolute + Path.DirectorySeparatorChar);
-            Uri path2 = new Uri(toPathAbsolute + Path.DirectorySeparatorChar);
-            Uri diff = path1.MakeRelativeUri(path2);
+            var path1 = new Uri(fromPathAbsolute + Path.DirectorySeparatorChar);
+            var path2 = new Uri(toPathAbsolute + Path.DirectorySeparatorChar);
+            var diff = path1.MakeRelativeUri(path2);
             // Convert Uri escaped characters and convert Uri forward slash to default directory separator.
-            string newPathFileName = Uri.UnescapeDataString(diff.OriginalString).Replace('/', Path.DirectorySeparatorChar);
+            var newPathFileName = Uri.UnescapeDataString(diff.OriginalString).Replace('/', Path.DirectorySeparatorChar);
 
             string cleanedPath;
             cleanedPath = newPathFileName.ToString();
@@ -454,8 +448,8 @@ namespace Core.General
         {
             string cleanPath;
             cleanPath = givenPath;
-            foreach (char invalidChar in Path.GetInvalidPathChars())
-                cleanPath = cleanPath.Replace(invalidChar, '');
+            foreach (var invalidChar in Path.GetInvalidPathChars())
+                cleanPath = cleanPath.Replace(invalidChar.ToString(), "");
             if (returnFullPath)
             {
                 try
@@ -477,8 +471,8 @@ namespace Core.General
 
             string cleanedPathGivenPathFileName;
             cleanedPathGivenPathFileName = givenPathFileName;
-            foreach (char invalidChar in Path.GetInvalidPathChars())
-                cleanedPathGivenPathFileName = cleanedPathGivenPathFileName.Replace(invalidChar, '');
+            foreach (var invalidChar in Path.GetInvalidPathChars())
+                cleanedPathGivenPathFileName = cleanedPathGivenPathFileName.Replace(invalidChar.ToString(), "");
             if (returnFullPathFileName)
             {
                 try
@@ -493,8 +487,8 @@ namespace Core.General
 
             string cleanedGivenFileName;
             cleanedGivenFileName = Path.GetFileName(cleanedPathGivenPathFileName);
-            foreach (char invalidChar in Path.GetInvalidFileNameChars())
-                cleanedGivenFileName = cleanedGivenFileName.Replace(invalidChar, '');
+            foreach (var invalidChar in Path.GetInvalidFileNameChars())
+                cleanedGivenFileName = cleanedGivenFileName.Replace(invalidChar.ToString(), "");
 
             string cleanedGivenPath;
             cleanedGivenPath = FileManager.GetPath(cleanedPathGivenPathFileName);
@@ -536,10 +530,10 @@ namespace Core.General
 
         public static string GetTestedPathFileName(string iPathFileName)
         {
-            string testedPathFileName = iPathFileName;
-            string pathFileNameWithoutExtension = FileManager.GetPathFileNameWithoutExtension(iPathFileName);
-            string extension = Path.GetExtension(iPathFileName);
-            int number = 1;
+            var testedPathFileName = iPathFileName;
+            var pathFileNameWithoutExtension = FileManager.GetPathFileNameWithoutExtension(iPathFileName);
+            var extension = Path.GetExtension(iPathFileName);
+            var number = 1;
             while (File.Exists(testedPathFileName))
             {
                 testedPathFileName = pathFileNameWithoutExtension + "(" + number.ToString() + ")" + extension;
@@ -551,8 +545,8 @@ namespace Core.General
 
         public static string GetTestedPath(string iPath)
         {
-            string testedPathFileName = iPath;
-            int number = 1;
+            var testedPathFileName = iPath;
+            var number = 1;
             while (Directory.Exists(testedPathFileName))
             {
                 testedPathFileName = iPath + "(" + number.ToString() + ")";
@@ -562,7 +556,7 @@ namespace Core.General
             return testedPathFileName;
         }
 
-        public static string GetLongestExtantPath(string iPath, ref string topNonextantPath = "")
+        public static string GetLongestExtantPath(string iPath, ref string topNonextantPath)
         {
             if (iPath != "" && !Directory.Exists(iPath))
             {
@@ -584,7 +578,7 @@ namespace Core.General
         // Example: "temp"                     returns ""
         public static string GetTopFolderPath(string iPathFileName)
         {
-            string topFolderPath = "";
+            var topFolderPath = "";
             string fullPath;
             string[] splitPathArray;
 
@@ -608,16 +602,16 @@ namespace Core.General
         // Returns the top-most folder path that was deleted.
         public static string DeleteEmptySubpath(string fullPath)
         {
-            string fullPathDeleted = "";
+            var fullPathDeleted = "";
 
             if (!string.IsNullOrEmpty(fullPath))
             {
                 try
                 {
-                    foreach (string aFullPath in Directory.EnumerateDirectories(fullPath))
+                    foreach (var aFullPath in Directory.EnumerateDirectories(fullPath))
                         fullPathDeleted = FileManager.DeleteEmptySubpath(aFullPath);
 
-                    string[] entries = Directory.GetFileSystemEntries(fullPath);
+                    var entries = Directory.GetFileSystemEntries(fullPath);
                     if (entries.Length == 0)
                     {
                         Directory.Delete(fullPath);
@@ -626,7 +620,7 @@ namespace Core.General
                 }
                 catch (Exception ex)
                 {
-                    int debug = 4242;
+                    var debug = 4242;
                 }
             }
 
@@ -642,11 +636,11 @@ namespace Core.General
 
         private static int GetPathAttribute(string path)
         {
-            DirectoryInfo di = new DirectoryInfo(path);
+            var di = new DirectoryInfo(path);
             if (di.Exists)
                 return FILE_ATTRIBUTE_DIRECTORY;
 
-            FileInfo fi = new FileInfo(path);
+            var fi = new FileInfo(path);
             if (fi.Exists)
                 return FILE_ATTRIBUTE_NORMAL;
 
@@ -657,10 +651,7 @@ namespace Core.General
         private const int FILE_ATTRIBUTE_NORMAL = 0x80;
 
         [DllImport("shlwapi.dll", SetLastError = true)]
-        private static int PathRelativePathTo(StringBuilder pszPath, string pszFrom, int dwAttrFrom, string pszTo, int dwAttrTo)
-        {
-        }
-
+        private static extern int PathRelativePathTo(StringBuilder pszPath, string pszFrom, int dwAttrFrom, string pszTo, int dwAttrTo);
 
         public static void CopyFolder(string source, string destination, bool overwrite)
         {
@@ -668,24 +659,24 @@ namespace Core.General
             if (!Directory.Exists(destination))
                 Directory.CreateDirectory(destination);
 
-            DirectoryInfo dirInfo = new DirectoryInfo(source);
+            var dirInfo = new DirectoryInfo(source);
 
             // Copy all files.
-            foreach (FileInfo fileInfo in dirInfo.GetFiles())
+            foreach (var fileInfo in dirInfo.GetFiles())
                 fileInfo.CopyTo(Path.Combine(destination, fileInfo.Name), overwrite);
 
             // Recursively copy all sub-directories.
-            foreach (DirectoryInfo subDirectoryInfo in dirInfo.GetDirectories())
+            foreach (var subDirectoryInfo in dirInfo.GetDirectories())
                 CopyFolder(subDirectoryInfo.FullName, Path.Combine(destination, subDirectoryInfo.Name), overwrite);
         }
 
         public static ulong GetFolderSize(string aFolder)
         {
-            ulong size;
-            DirectoryInfo FolderInfo = new System.IO.DirectoryInfo(aFolder);
-            foreach (FileInfo File in FolderInfo.GetFiles())
+            ulong size = 0;
+            var FolderInfo = new System.IO.DirectoryInfo(aFolder);
+            foreach (var File in FolderInfo.GetFiles())
                 size += System.Convert.ToUInt64(File.Length);
-            foreach (DirectoryInfo SubFolderInfo in FolderInfo.GetDirectories())
+            foreach (var SubFolderInfo in FolderInfo.GetDirectories())
                 size += GetFolderSize(SubFolderInfo.FullName);
             return size;
         }
@@ -693,13 +684,13 @@ namespace Core.General
 
         public static object ReadXml(Type theType, string rootElementName, string fileName)
         {
-            XmlSerializer x = new XmlSerializer(theType, new XmlRootAttribute(rootElementName));
+            var x = new XmlSerializer(theType, new XmlRootAttribute(rootElementName));
             return ReadXml(x, fileName);
         }
 
         public static object ReadXml(Type theType, string fileName)
         {
-            XmlSerializer x = new XmlSerializer(theType);
+            var x = new XmlSerializer(theType);
 
             // Dim objStreamReader As New StreamReader(fileName)
             // Dim iObject As Object = Nothing
@@ -718,9 +709,9 @@ namespace Core.General
 
         public static object ReadXml(XmlSerializer x, string fileName)
         {
-            StreamReader objStreamReader = new StreamReader(fileName);
+            var objStreamReader = new StreamReader(fileName);
             object iObject = null;
-            bool thereWasReadError = false;
+            var thereWasReadError = false;
 
             try
             {
@@ -756,13 +747,13 @@ namespace Core.General
 
         public static void WriteXml(object iObject, string rootElementName, string fileName)
         {
-            XmlSerializer x = new XmlSerializer(iObject.GetType(), new XmlRootAttribute(rootElementName));
+            var x = new XmlSerializer(iObject.GetType(), new XmlRootAttribute(rootElementName));
             WriteXml(iObject, x, fileName);
         }
 
         public static void WriteXml(object iObject, string fileName)
         {
-            XmlSerializer x = new XmlSerializer(iObject.GetType());
+            var x = new XmlSerializer(iObject.GetType());
 
             // Dim objStreamWriter As New StreamWriter(fileName)
             // x.Serialize(objStreamWriter, iObject)
@@ -775,12 +766,12 @@ namespace Core.General
         {
             // Dim objStreamWriter As New StreamWriter(fileName)
             // NOTE: Use Xml.XmlWriterSettings to preserve CRLF line endings used by multi-line textboxes.
-            System.Xml.XmlWriterSettings settings = new System.Xml.XmlWriterSettings();
+            var settings = new System.Xml.XmlWriterSettings();
             settings.Indent = true;
-            settings.IndentChars = (ControlChars.Tab);
+            settings.IndentChars = (ControlChars.Tab.ToString());
             settings.OmitXmlDeclaration = false;
             settings.NewLineHandling = System.Xml.NewLineHandling.Entitize;
-            System.Xml.XmlWriter objStreamWriter = System.Xml.XmlWriter.Create(fileName, settings);
+            var objStreamWriter = System.Xml.XmlWriter.Create(fileName, settings);
             x.Serialize(objStreamWriter, iObject);
             objStreamWriter.Close();
         }

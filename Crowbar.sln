@@ -37,6 +37,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{458BF0DB
 		.azure\workflows\build.yml = .azure\workflows\build.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{A3270E1D-4EE4-41E5-A6B9-DA49E460D84C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E9EB8777-184F-426A-B7C2-5F1DCE900342}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Development.txt = docs\Development.txt
+		docs\History 2013.txt = docs\History 2013.txt
+		docs\History 2014.txt = docs\History 2014.txt
+		docs\Specifications.txt = docs\Specifications.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +57,15 @@ Global
 		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3270E1D-4EE4-41E5-A6B9-DA49E460D84C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3270E1D-4EE4-41E5-A6B9-DA49E460D84C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3270E1D-4EE4-41E5-A6B9-DA49E460D84C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3270E1D-4EE4-41E5-A6B9-DA49E460D84C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31} = {D4673DF9-2E71-4450-8099-E05AA6DD6183}
 		{D5DD9FFE-68B1-49AD-84DB-8394731BCA7E} = {218BDA05-D55C-49DC-80F4-71B7AA3C07A2}
 		{458BF0DB-73C1-4FB3-BABB-4D3197029618} = {218BDA05-D55C-49DC-80F4-71B7AA3C07A2}
+		{A3270E1D-4EE4-41E5-A6B9-DA49E460D84C} = {A3FE360B-E0E9-470A-B0A3-87E1B6E3B415}
 	EndGlobalSection
 EndGlobal

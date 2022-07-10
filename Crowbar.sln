@@ -1,55 +1,56 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Crowbar", "Crowbar\Crowbar.vbproj", "{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}"
-	ProjectSection(ProjectDependencies) = postProject
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE} = {20B2D012-34BC-411C-BD8D-B09E03C72AAE}
-		{8ED62942-7349-4076-89AD-4EEFF224800B} = {8ED62942-7349-4076-89AD-4EEFF224800B}
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".files", ".files", "{EBFBE9EC-8BBE-4080-86F3-201E68268029}"
+ProjectSection(SolutionItems) = preProject
+	.editorconfig = .editorconfig
+	.gitattributes = .gitattributes
+	.gitignore = .gitignore
+	CHANGELOG.md = CHANGELOG.md
+	LICENSE = LICENSE
+	README.md = README.md
+	.editoricon.png = .editoricon.png
+	build.cake = build.cake
+	src\.files\AssemblyInfo.General.cs = src\.files\AssemblyInfo.General.cs
+	src\.files\AssemblyInfo.Version.cs = src\.files\AssemblyInfo.Version.cs
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{B0F8AC6D-88B6-4981-8987-AB4B0635482F}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
 	EndProjectSection
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CrowbarSteamPipe", "CrowbarSteamPipe\CrowbarSteamPipe.vbproj", "{8ED62942-7349-4076-89AD-4EEFF224800B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".workflows", ".workflows", "{218BDA05-D55C-49DC-80F4-71B7AA3C07A2}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CrowbarLauncher", "CrowbarLauncher\CrowbarLauncher.vbproj", "{20B2D012-34BC-411C-BD8D-B09E03C72AAE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A3FE360B-E0E9-470A-B0A3-87E1B6E3B415}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D4673DF9-2E71-4450-8099-E05AA6DD6183}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Abstractions", "tests\Tests.Abstractions\Tests.Abstractions.csproj", "{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{D5DD9FFE-68B1-49AD-84DB-8394731BCA7E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{458BF0DB-73C1-4FB3-BABB-4D3197029618}"
+	ProjectSection(SolutionItems) = preProject
+		.azure\workflows\build.yml = .azure\workflows\build.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}.Debug|x86.ActiveCfg = Debug|x86
-		{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}.Debug|x86.Build.0 = Debug|x86
-		{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}.Release|x86.ActiveCfg = Release|x86
-		{632B4ABC-9AF3-480D-8640-FDA6FB637AD7}.Release|x86.Build.0 = Release|x86
-		{8ED62942-7349-4076-89AD-4EEFF224800B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8ED62942-7349-4076-89AD-4EEFF224800B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8ED62942-7349-4076-89AD-4EEFF224800B}.Debug|x86.ActiveCfg = Debug|x86
-		{8ED62942-7349-4076-89AD-4EEFF224800B}.Debug|x86.Build.0 = Debug|x86
-		{8ED62942-7349-4076-89AD-4EEFF224800B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8ED62942-7349-4076-89AD-4EEFF224800B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8ED62942-7349-4076-89AD-4EEFF224800B}.Release|x86.ActiveCfg = Release|x86
-		{8ED62942-7349-4076-89AD-4EEFF224800B}.Release|x86.Build.0 = Release|x86
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE}.Debug|x86.ActiveCfg = Debug|x86
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE}.Debug|x86.Build.0 = Debug|x86
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE}.Release|x86.ActiveCfg = Release|x86
-		{20B2D012-34BC-411C-BD8D-B09E03C72AAE}.Release|x86.Build.0 = Release|x86
+		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {554572F2-842E-44A4-9F56-F1684B016632}
+	GlobalSection(NestedProjects) = preSolution
+		{293AB7D0-1FD6-48FD-B699-DAF5AD41EF31} = {D4673DF9-2E71-4450-8099-E05AA6DD6183}
+		{D5DD9FFE-68B1-49AD-84DB-8394731BCA7E} = {218BDA05-D55C-49DC-80F4-71B7AA3C07A2}
+		{458BF0DB-73C1-4FB3-BABB-4D3197029618} = {218BDA05-D55C-49DC-80F4-71B7AA3C07A2}
 	EndGlobalSection
 EndGlobal

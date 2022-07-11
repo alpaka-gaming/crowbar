@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using Core.GameModel.SourceGlobal;
 
 namespace Core
 {
@@ -54,7 +55,7 @@ namespace Core
             try
             {
                 string command = "";
-                int commandOption;
+                int commandOption = 0;
 
                 info.lineCount = 0;
                 while (GetLineInput())
@@ -153,9 +154,9 @@ namespace Core
             int boneCount = 0;
             int tokenCount = 0;
 
-            int boneIndex;
+            int boneIndex = 0;
             string boneName = "";
-            int parentBoneIndex;
+            int parentBoneIndex = 0;
 
             while (GetLineInput())
             {
@@ -327,11 +328,11 @@ namespace Core
         {
             int tokenCount;
 
-            int boneIndex;
+            int boneIndex = 0;
             SourceVector position = new SourceVector();
             SourceVector rotation = new SourceVector();
             string command = "";
-            int frameIndex;
+            int frameIndex = 0;
 
             // int	t = -99999999;
             // int size;
@@ -643,6 +644,6 @@ namespace Core
         private static List<string> commandsRemaining;
 
         // NOTE: Empty array means all whitespace in Split().
-        private static char[] whitespaceSeparators = new[] { };
+        private static char[] whitespaceSeparators;
     }
 }

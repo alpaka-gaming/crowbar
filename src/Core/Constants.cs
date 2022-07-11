@@ -1,9 +1,13 @@
-﻿namespace Core
+﻿using System;
+
+namespace Core
 {
     public static class Constants
     {
         public const string WorkshopLinkStart = "https://steamcommunity.com/sharedfiles/filedetails/?id=";
         public const string ChangedMarker = "*";
+
+        public static string vbCr = System.Environment.NewLine;
 
         public static string HelpTutorialLink = "tutorial.html";
         public static string HelpContentsLink = "contents.html";

@@ -1,4 +1,6 @@
-﻿namespace Core
+﻿using Core.Enums;
+
+namespace Core
 {
     public class CompilerInputInfo
     {

@@ -1,8 +1,10 @@
-﻿namespace Core
+﻿using Core.General;
+
+namespace Core
 {
     public class CompilerOutputInfo
     {
-        public AppEnums.StatusMessage theStatus;
+        public Enums.StatusMessage theStatus;
         public BindingListEx<string> theCompiledRelativePathFileNames;
     }
 }
